@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/Evgeniya-star-35/gallery-parcel.git"
   },
-  "author": "EvgeniyaBayda",
+  "author": "Evgeniya Bayda",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Evgeniya-star-35/gallery-parcel/issues"
@@ -22,5 +22,8 @@
   "devDependencies": {
     "gh-pages": "^3.2.3",
     "parcel-bundler": "^1.12.5"
+  },
+  "dependencies": {
+    "parcel-plugin-nuke-dist": "^1.0.1"
   }
 }
