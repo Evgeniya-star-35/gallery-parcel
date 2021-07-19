@@ -1,0 +1,26 @@
+{
+  "name": "gallery-parcel",
+  "version": "1.0.0",
+  "description": "parcel",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html --public-url /gallery-parcel/",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Evgeniya-star-35/gallery-parcel.git"
+  },
+  "author": "EvgeniyaBayda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Evgeniya-star-35/gallery-parcel/issues"
+  },
+  "homepage": "https://github.com/Evgeniya-star-35/gallery-parcel#readme",
+  "devDependencies": {
+    "gh-pages": "^3.2.3",
+    "parcel-bundler": "^1.12.5"
+  }
+}
