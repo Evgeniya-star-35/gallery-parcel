@@ -1,7 +1,7 @@
 {
   "name": "gallery-parcel",
   "version": "1.0.0",
-  "description": "parcel",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "parcel src/index.html",
