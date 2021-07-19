@@ -1,7 +1,7 @@
 import {galleryItems} from "./main";
 import {refs} from './refs';
 
-export function createGallery(galleryItems) {
+ function createGallery(galleryItems) {
   return galleryItems
     .map(({ preview, original, description }, index) => {
       return `<li class="gallery__item ><a class="gallery__link"
@@ -19,6 +19,6 @@ export function createGallery(galleryItems) {
     .join('');
 }
 
-export const imgGallery = createGallery(galleryItems);
+ const imgGallery = createGallery(galleryItems);
 
 refs.galleryEl.insertAdjacentHTML('beforeend', imgGallery);

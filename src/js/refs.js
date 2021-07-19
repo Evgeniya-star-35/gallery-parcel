@@ -1,4 +1,4 @@
-import galleryItems from "./main";
+
 export const refs = {
   galleryEl: document.querySelector('.js-gallery'),
   backdrop: document.querySelector('.js-lightbox'),
