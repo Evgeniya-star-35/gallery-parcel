@@ -117,226 +117,25 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/main.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.galleryItems = void 0;
-var galleryItems = [{
-  preview: 'https://cdn.pixabay.com/photo/2019/05/14/16/43/himilayan-blue-poppy-4202825__340.jpg',
-  original: 'https://cdn.pixabay.com/photo/2019/05/14/16/43/himilayan-blue-poppy-4202825_1280.jpg',
-  description: 'Hokkaido Flower'
-}, {
-  preview: 'https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677__340.jpg',
-  original: 'https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677_1280.jpg',
-  description: 'Container Haulage Freight'
-}, {
-  preview: 'https://cdn.pixabay.com/photo/2019/05/16/09/47/beach-4206785__340.jpg',
-  original: 'https://cdn.pixabay.com/photo/2019/05/16/09/47/beach-4206785_1280.jpg',
-  description: 'Aerial Beach View'
-}, {
-  preview: 'https://cdn.pixabay.com/photo/2016/11/18/16/19/flowers-1835619__340.jpg',
-  original: 'https://cdn.pixabay.com/photo/2016/11/18/16/19/flowers-1835619_1280.jpg',
-  description: 'Flower Blooms'
-}, {
-  preview: 'https://cdn.pixabay.com/photo/2018/09/13/10/36/mountains-3674334__340.jpg',
-  original: 'https://cdn.pixabay.com/photo/2018/09/13/10/36/mountains-3674334_1280.jpg',
-  description: 'Alpine Mountains'
-}, {
-  preview: 'https://cdn.pixabay.com/photo/2019/05/16/23/04/landscape-4208571__340.jpg',
-  original: 'https://cdn.pixabay.com/photo/2019/05/16/23/04/landscape-4208571_1280.jpg',
-  description: 'Mountain Lake Sailing'
-}, {
-  preview: 'https://cdn.pixabay.com/photo/2019/05/17/09/27/the-alps-4209272__340.jpg',
-  original: 'https://cdn.pixabay.com/photo/2019/05/17/09/27/the-alps-4209272_1280.jpg',
-  description: 'Alpine Spring Meadows'
-}, {
-  preview: 'https://cdn.pixabay.com/photo/2019/05/16/21/10/landscape-4208255__340.jpg',
-  original: 'https://cdn.pixabay.com/photo/2019/05/16/21/10/landscape-4208255_1280.jpg',
-  description: 'Nature Landscape'
-}, {
-  preview: 'https://cdn.pixabay.com/photo/2019/05/17/04/35/lighthouse-4208843__340.jpg',
-  original: 'https://cdn.pixabay.com/photo/2019/05/17/04/35/lighthouse-4208843_1280.jpg',
-  description: 'Lighthouse Coast Sea'
-}];
-exports.galleryItems = galleryItems;
-},{}],"js/refs.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.refs = void 0;
-
-var _main = _interopRequireDefault(require("./main"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var refs = {
-  galleryEl: document.querySelector('.js-gallery'),
-  backdrop: document.querySelector('.js-lightbox'),
-  modal: document.querySelector('.lightbox__content'),
-  lightboxImg: document.querySelector('.lightbox__image'),
-  lightboxOverlay: document.querySelector('div.lightbox__overlay'),
-  btnModalClose: document.querySelector('[data-action="close-lightbox"]')
-};
-exports.refs = refs;
-},{"./main":"js/main.js"}],"js/render.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.createGallery = createGallery;
-exports.imgGallery = void 0;
-
-var _main = require("./main");
-
-var _refs = require("./refs");
-
-function createGallery(galleryItems) {
-  return galleryItems.map(function (_ref, index) {
-    var preview = _ref.preview,
-        original = _ref.original,
-        description = _ref.description;
-    return "<li class=\"gallery__item ><a class=\"gallery__link\"\n      href=\"".concat(original, "\"\n    >\n      <img\n        class=\"gallery__image\"\n        src=\"").concat(preview, "\"\n        data-source=\"").concat(original, "\"\n        alt=\"").concat(description, "\" data-index=\"").concat(index, "\"\n      />\n    </a>\n  </li>");
-  }).join('');
-}
-
-var imgGallery = createGallery(_main.galleryItems);
-exports.imgGallery = imgGallery;
-
-_refs.refs.galleryEl.insertAdjacentHTML('beforeend', imgGallery);
-},{"./main":"js/main.js","./refs":"js/refs.js"}],"js/functions.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.onClickGalleryItem = onClickGalleryItem;
-exports.onClickCloseModal = onClickCloseModal;
-exports.onCloseButtonClick = onCloseButtonClick;
-exports.onCloseOverlayClick = onCloseOverlayClick;
-exports.onClickEsc = onClickEsc;
-exports.onArrowLeft = onArrowLeft;
-exports.onArrowRight = onArrowRight;
-exports.newSrc = newSrc;
-
-var _refs = require("./refs");
-
-function onClickGalleryItem(e) {
-  e.preventDefault();
-  window.addEventListener('keydown', onClickEsc);
-  var target = e.target;
-
-  if (target.nodeName !== 'IMG') {
-    return;
-  }
-
-  if (target.nodeName === 'IMG') {
-    _refs.refs.backdrop.classList.add('is-open'); // refs.lightboxImg.src = target.getAttribute('data-source');
-
-
-    _refs.refs.lightboxImg.src = target.dataset.source;
-    _refs.refs.lightboxImg.alt = target.alt;
-    _refs.refs.lightboxImg.dataset.index = e.target.dataset.index;
-  }
-}
-
-function onClickCloseModal() {
-  _refs.refs.backdrop.classList.remove('is-open');
-}
-
-function onCloseButtonClick(e) {
-  window.removeEventListener('keydown', onClickEsc);
-  e.preventDefault();
-  onClickCloseModal();
-  _refs.refs.lightboxImg.src = '';
-  _refs.refs.lightboxImg.alt = '';
-}
-
-function onCloseOverlayClick(e) {
-  if (e.target === e.currentTarget) {
-    onClickCloseModal();
-  }
-}
-
-function onClickEsc(e) {
-  var ESC_KEY_CODE = 'Escape';
-
-  if (e.code === ESC_KEY_CODE) {
-    onClickCloseModal();
-  }
-}
-
-window.addEventListener('keydown', function (e) {
-  if (e.code === 'ArrowLeft') {
-    onArrowLeft();
-  }
-
-  if (e.code === 'ArrowRight') {
-    onArrowRight();
-  }
-});
-
-function onArrowLeft() {
-  var index = +_refs.refs.lightboxImg.dataset.index;
-
-  if (index === 0) {
-    newSrc(index, galleryItems.length - 1);
-    return;
-  }
-
-  newSrc(index, -1);
-}
-
-function onArrowRight() {
-  var index = +_refs.refs.lightboxImg.dataset.index;
-
-  if (index === galleryItems.length - 1) {
-    newSrc(0);
-    return;
-  }
-
-  newSrc(index, 1);
-}
-
-function newSrc(index) {
-  var step = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  _refs.refs.lightboxImg.dataset.index = "".concat(index + step);
-  _refs.refs.lightboxImg.src = galleryItems[index + step].original;
-}
-},{"./refs":"js/refs.js"}],"js/listeners.js":[function(require,module,exports) {
-"use strict";
-
-var _refs = require("./refs");
-
-var _functions = require("./functions");
-
-_refs.refs.galleryEl.addEventListener('click', _functions.onClickGalleryItem);
-
-_refs.refs.btnModalClose.addEventListener('click', _functions.onCloseButtonClick);
-
-_refs.refs.lightboxOverlay.addEventListener('click', _functions.onCloseOverlayClick);
-},{"./refs":"js/refs.js","./functions":"js/functions.js"}],"index.js":[function(require,module,exports) {
+})({"index.js":[function(require,module,exports) {
 "use strict";
 
 var _main = require("./js/main");
 
 var _refs = require("./js/refs");
 
-var _render = require("./js/render");
+var file = _interopRequireWildcard(require("./js/render"));
 
-var func = _interopRequireWildcard(require("./js/functions"));
+var keyboard = _interopRequireWildcard(require("./js/keys-arrow"));
 
-var lis = _interopRequireWildcard(require("./js/listeners"));
+var funcM = _interopRequireWildcard(require("./js/function"));
+
+var listen = _interopRequireWildcard(require("./js/listener"));
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-},{"./js/main":"js/main.js","./js/refs":"js/refs.js","./js/render":"js/render.js","./js/functions":"js/functions.js","./js/listeners":"js/listeners.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -364,7 +163,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54137" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51865" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
