@@ -1,4 +1,4 @@
-// import galleryItems from "./main";
+
 import {refs} from './refs';
 import {onClickGalleryItem,onCloseButtonClick, onCloseOverlayClick} from "./functions"
 

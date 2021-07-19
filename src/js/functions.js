@@ -1,3 +1,4 @@
+import {refs} from './refs';
 export function onClickGalleryItem(e) {
   e.preventDefault();
   window.addEventListener('keydown', onClickEsc);
