@@ -1,4 +1,4 @@
-import galleryItems from "./main";
+import {galleryItems} from "./main";
 import {refs} from './refs';
 
 export function createGallery(galleryItems) {
