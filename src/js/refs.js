@@ -1,9 +1,7 @@
-
-export const refs = {
-  galleryEl: document.querySelector('.js-gallery'),
-  backdrop: document.querySelector('.js-lightbox'),
-  modal: document.querySelector('.lightbox__content'),
-  lightboxImg: document.querySelector('.lightbox__image'),
-  lightboxOverlay: document.querySelector('div.lightbox__overlay'),
-  btnModalClose: document.querySelector('[data-action="close-lightbox"]'),
+const refs = {
+  gallery: document.querySelector('.js-gallery'),
+  modal: document.querySelector('.js-lightbox'),
+  modalImg: document.querySelector('.lightbox__image'),
 };
+
+export default refs;
